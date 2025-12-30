@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$J4J - Justice for Joey | Exposing the Fraud</title>
+    <meta name="description" content="Justice for Joey - The meme coin fighting government fraud. Inspired by the Minnesota daycare scandal exposé. Available on Solana & Base.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="$J4J - Justice for Joey">
+    <meta property="og:description" content="The meme coin fighting government fraud. Where are the children? Live on Solana & Base.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent-red: #ff3b3b;
+            --accent-red-glow: rgba(255, 59, 59, 0.4);
+            --accent-gold: #ffd700;
+            --accent-gold-glow: rgba(255, 215, 0, 0.3);
+            --accent-solana: #9945FF;
+            --accent-solana-glow: rgba(153, 69, 255, 0.4);
+            --accent-base: #0052FF;
+            --accent-base-glow: rgba(0, 82, 255, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --border-color: #2a2a2a;
+            --gradient-red: linear-gradient(135deg, #ff3b3b 0%, #ff6b35 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+            --gradient-solana: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+            --gradient-base: linear-gradient(135deg, #0052FF 0%, #3380FF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Noise Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .nav-cta {
+            background: var(--gradient-red);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px var(--accent-red-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, var(--accent-red-glow) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 80%, var(--accent-gold-glow) 0%, transparent 40%);
+            animation: heroGlow 15s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .breaking-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 59, 59, 0.1);
+            border: 1px solid var(--accent-red);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-red-glow); }
+            50% { box-shadow: 0 0 20px 5px var(--accent-red-glow); }
+        }
+
+        .breaking-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .breaking-badge span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-red);
+        }
+
+        .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 .justice {
+            display: block;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .for {
+            display: block;
+            font-size: 0.4em;
+            color: var(--text-secondary);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 .joey {
+            display: block;
+            background: var(--gradient-red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Chromatic aberration glitch with scan lines */
+        .hero h1 .chromatic-glitch {
+            position: relative;
+            display: inline-block;
+            filter: contrast(1.3) brightness(1.1);
+        }
+
+        .hero h1 .chromatic-glitch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 1px,
+                rgba(255, 0, 80, 0.03) 1px,
+                rgba(255, 0, 80, 0.03) 3px,
+                transparent 3px,
+                transparent 6px,
+                rgba(0, 255, 255, 0.03) 6px,
+                rgba(0, 255, 255, 0.03) 8px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero h1 .chromatic-glitch::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: scanLine 3s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero h1 .chromatic-glitch.glitch--active {
+            animation: chromaticShift 400ms ease-out;
+        }
+
+        .hero h1 .chromatic-glitch.glitch--active::before {
+            animation: scanLineIntense 400ms ease-out;
+        }
+
+        @keyframes scanLine {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes chromaticShift {
+            0%, 100% {
+                text-shadow: 0 0 0 transparent;
+                transform: translateX(0);
+            }
+            20% {
+                text-shadow: 
+                    -2px 0 0 rgba(255, 0, 80, 0.8),
+                    2px 0 0 rgba(0, 255, 255, 0.8);
+                transform: translateX(1px);
+            }
+            40% {
+                text-shadow: 
+                    -4px 0 0 rgba(255, 0, 80, 0.6),
+                    4px 0 0 rgba(0, 255, 255, 0.6);
+                transform: translateX(-1px);
+            }
+            60% {
+                text-shadow: 
+                    -3px 0 0 rgba(255, 0, 80, 0.9),
+                    3px 0 0 rgba(0, 255, 255, 0.9);
+                transform: translateX(2px);
+            }
+            80% {
+                text-shadow: 
+                    -1px 0 0 rgba(255, 0, 80, 0.7),
+                    1px 0 0 rgba(0, 255, 255, 0.7);
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scanLineIntense {
+            0%, 100% {
+                background: repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 1px,
+                    rgba(255, 0, 80, 0.03) 1px,
+                    rgba(255, 0, 80, 0.03) 3px,
+                    transparent 3px,
+                    transparent 6px,
+                    rgba(0, 255, 255, 0.03) 6px,
+                    rgba(0, 255, 255, 0.03) 8px
+                );
+            }
+            50% {
+                background: repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 1px,
+                    rgba(255, 0, 80, 0.15) 1px,
+                    rgba(255, 0, 80, 0.15) 3px,
+                    transparent 3px,
+                    transparent 6px,
+                    rgba(0, 255, 255, 0.15) 6px,
+                    rgba(0, 255, 255, 0.15) 8px
+                );
+            }
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero-question {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+        }
+
+        /* Chain Badges */
+        .chain-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .chain-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .chain-badge.solana {
+            background: rgba(153, 69, 255, 0.15);
+            border: 1px solid var(--accent-solana);
+            color: var(--accent-solana);
+        }
+
+        .chain-badge.base {
+            background: rgba(0, 82, 255, 0.15);
+            border: 1px solid var(--accent-base);
+            color: var(--accent-base);
+        }
+
+        .chain-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-red);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px var(--accent-red-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Ticker Section */
+        .ticker-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: ticker 40s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 2rem;
+            white-space: nowrap;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .ticker-item .label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .ticker-item .value {
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .ticker-item .value.solana-color {
+            color: var(--accent-solana);
+        }
+
+        .ticker-item .value.base-color {
+            color: var(--accent-base);
+        }
+
+        .ticker-item .separator {
+            color: var(--border-color);
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .story-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-5px);
+        }
+
+        .story-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-card h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .story-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .story-card .highlight {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            text-align: center;
+        }
+
+        .quote-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .quote-text .emphasis {
+            color: var(--accent-red);
+        }
+
+        .quote-attribution {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .quote-attribution strong {
+            color: var(--text-secondary);
+        }
+
+        /* Tokenomics Section */
+        .tokenomics-section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .token-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .token-stat-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .token-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Chain Contracts */
+        .chain-contracts {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contract-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            transition: border-color 0.3s ease;
+        }
+
+        .contract-box.solana:hover {
+            border-color: var(--accent-solana);
+        }
+
+        .contract-box.base:hover {
+            border-color: var(--accent-base);
+        }
+
+        .contract-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chain-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chain-icon.solana {
+            background: var(--gradient-solana);
+        }
+
+        .chain-icon.base {
+            background: var(--gradient-base);
+        }
+
+        .chain-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .contract-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .contract-chain {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+        }
+
+        .contract-address {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        .contract-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--border-color);
+        }
+
+        .buy-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .buy-btn.solana {
+            background: var(--gradient-solana);
+        }
+
+        .buy-btn.base {
+            background: var(--gradient-base);
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* How to Buy Section */
+        .how-to-buy-section {
+            padding: 8rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .how-to-buy-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Chain Tabs */
+        .chain-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .chain-tab {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chain-tab.active.solana {
+            border-color: var(--accent-solana);
+            color: var(--accent-solana);
+            background: rgba(153, 69, 255, 0.1);
+        }
+
+        .chain-tab.active.base {
+            border-color: var(--accent-base);
+            color: var(--accent-base);
+            background: rgba(0, 82, 255, 0.1);
+        }
+
+        .chain-tab:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .chain-tab svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .chain-content {
+            display: none;
+        }
+
+        .chain-content.active {
+            display: block;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .step-number.solana {
+            background: var(--gradient-solana);
+        }
+
+        .step-number.base {
+            background: var(--gradient-base);
+        }
+
+        .step-content h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+        }
+
+        .step-content a {
+            color: var(--accent-gold);
+            text-decoration: underline;
+        }
+
+        /* Community Section */
+        .community-section {
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .community-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-disclaimer {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
+            }
+
+            .step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contract-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contract-info {
+                flex-direction: column;
+            }
+
+            .chain-tabs {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Illustrated cards styles (scoped to .story-section.illustrated) */
+        .story-section.illustrated .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .story-section.illustrated .section-header { text-align: center; margin-bottom: 60px; }
+        .story-section.illustrated .section-label { color: var(--accent-red); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+        .story-section.illustrated .section-title { font-family: 'Unbounded', sans-serif; font-size: 48px; font-weight: 800; margin: 16px 0; background: linear-gradient(135deg, #ffffff 0%, #888888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .story-section.illustrated .section-subtitle { color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .story-section.illustrated .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+        .story-section.illustrated .story-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .story-section.illustrated .story-card:hover { border-color: var(--accent-red); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(255,59,59,0.12); }
+        .story-section.illustrated .card-illustration { width: 100%; height: 180px; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(255,59,59,0.03) 0%, rgba(255,59,59,0.015) 100%); border-radius: 10px; }
+        .story-section.illustrated .card-illustration svg { width: 120px; height: 120px; filter: drop-shadow(0 6px 20px rgba(255,59,59,0.12)); }
+        .story-section.illustrated .story-card h3 { font-family: 'Archivo Black', sans-serif; font-size: 1.125rem; margin-bottom: 0.75rem; color: var(--text-primary); }
+        .story-section.illustrated .story-card p { color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem; }
+        .story-section.illustrated .highlight { color: var(--accent-red); font-weight: 700; }
+        .story-section.illustrated .card-link { display: inline-block; margin-top: 12px; color: var(--accent-red); text-decoration: none; font-weight: 700; font-size: 0.875rem; border-bottom: 2px solid transparent; }
+        .story-section.illustrated .card-link:hover { border-bottom-color: var(--accent-red); padding-left: 6px; }
+        @keyframes illustratedFloat { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+        .story-section.illustrated .card-illustration svg { animation: illustratedFloat 3s ease-in-out infinite; }
+        .story-section.illustrated .story-card:nth-child(2) .card-illustration svg { animation-delay: 0.2s; }
+        .story-section.illustrated .story-card:nth-child(3) .card-illustration svg { animation-delay: 0.4s; }
+        .story-section.illustrated .story-card:nth-child(4) .card-illustration svg { animation-delay: 0.6s; }
+        .story-section.illustrated .story-card:nth-child(5) .card-illustration svg { animation-delay: 0.8s; }
+        .story-section.illustrated .story-card:nth-child(6) .card-illustration svg { animation-delay: 1s; }
+
+        @media (max-width: 768px) {
+            .story-section.illustrated .story-grid { grid-template-columns: 1fr; }
+            .story-section.illustrated .section-title { font-size: 36px; }
+        }
+
+        /* YouTube card overlay and CTA */
+        .story-section.illustrated .story-card.youtube-link { text-decoration: none; color: inherit; display: block; }
+        .story-section.illustrated .story-card.youtube-link .card-illustration { position: relative; }
+        .story-section.illustrated .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+        .story-section.illustrated .play-overlay svg { width: 72px; height: 72px; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6)); transform: translateZ(0); transition: transform 0.25s ease; }
+        .story-section.illustrated .story-card.youtube-link:hover .play-overlay svg { transform: scale(1.06); }
+        .story-section.illustrated .youtube-cta { display: inline-block; margin-top: 12px; color: var(--accent-red); font-weight: 700; font-size: 0.95rem; }
+        .story-section.illustrated .youtube-cta::after { content: ' \2192'; margin-left: 8px; }
+
+        
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">$J4J <span>Token</span></a>
+        <ul class="nav-links">
+            <li><a href="#story">Story</a></li>
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#buy">How to Buy</a></li>
+            <li><a href="#community">Community</a></li>
+        </ul>
+        <a href="#buy" class="nav-cta">Buy $J4J</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="breaking-badge fade-in">
+                <div class="dot"></div>
+                <span>100M+ Views • FBI Investigation Launched</span>
+            </div>
+            
+            <h1 class="fade-in delay-1">
+                <span class="justice">JUSTICE</span>
+                <span class="for">for</span>
+                <span class="joey chromatic-glitch">JOEY</span>
+            </h1>
+            
+            <p class="hero-tagline fade-in delay-2">The meme coin fighting government fraud.</p>
+            <p class="hero-question fade-in delay-3">"Where are the children?"</p>
+            
+            <!-- Chain Badges -->
+            <div class="chain-badges fade-in delay-3">
+                <span class="chain-badge solana">
+                    <svg viewBox="0 0 397.7 311.7" fill="currentColor">
+                        <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"/>
+                        <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"/>
+                        <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"/>
+                    </svg>
+                    Live on Solana
+                </span>
+                <span class="chain-badge base">
+                    <svg viewBox="0 0 111 111" fill="currentColor">
+                        <path d="M54.921 110.034c30.346 0 54.948-24.602 54.948-54.948S85.267.138 54.921.138 0 24.74 0 55.086s24.602 54.948 54.921 54.948z"/>
+                        <path fill="#0a0a0a" d="M55.39 94.238c21.596 0 39.109-17.513 39.109-39.109S76.986 16.02 55.39 16.02c-20.653 0-37.548 16.009-39.009 36.291h52.091v5.618H16.381c1.461 20.282 18.356 36.309 39.009 36.309z"/>
+                    </svg>
+                    Live on Base
+                </span>
+            </div>
+            
+            <div class="hero-stats fade-in delay-4">
+                <div class="stat">
+                    <span class="stat-value">$9B+</span>
+                    <span class="stat-label">Alleged Fraud</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100M+</span>
+                    <span class="stat-label">Video Views</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">1000+</span>
+                    <span class="stat-label">Fake Daycares</span>
+                </div>
+            </div>
+            
+            <div class="hero-cta fade-in delay-5">
+                <a href="#buy" class="btn-primary">Buy $J4J Now</a>
+                <a href="https://www.youtube.com/watch?v=XXXXXXX" target="_blank" class="btn-secondary">Watch the Exposé</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticker Section -->
+    <div class="ticker-section">
+        <div class="ticker-track">
+            <div class="ticker-item">
+                <span class="label">Ticker:</span>
+                <span class="value">$J4J</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Solana:</span>
+                <span class="value solana-color">LIVE</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Base:</span>
+                <span class="value base-color">LIVE</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Supply:</span>
+                <span class="value">1,000,000,000</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Tax:</span>
+                <span class="value">0%</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">LP:</span>
+                <span class="value">BURNED</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Mint:</span>
+                <span class="value">REVOKED</span>
+                <span class="separator">•</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item">
+                <span class="label">Ticker:</span>
+                <span class="value">$J4J</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Solana:</span>
+                <span class="value solana-color">LIVE</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Base:</span>
+                <span class="value base-color">LIVE</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Supply:</span>
+                <span class="value">1,000,000,000</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Tax:</span>
+                <span class="value">0%</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">LP:</span>
+                <span class="value">BURNED</span>
+                <span class="separator">•</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">Mint:</span>
+                <span class="value">REVOKED</span>
+                <span class="separator">•</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Illustrated Story Section -->
+    <section class="story-section illustrated" id="story">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">// THE STORY</span>
+                <h2 class="section-title">Who is Joey?</h2>
+                <p class="section-subtitle">Joey is the fictional child Nick Shirley used to expose Minnesota's billion-dollar daycare fraud scandal.</p>
+            </div>
+
+            <div class="story-grid">
+                <!-- Card 1: Empty Daycares -->
+                <div class="story-card">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="40" y="60" width="120" height="100" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <g opacity="0.8">
+                                <rect x="55" y="75" width="25" height="25" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <line x1="55" y1="75" x2="80" y2="100" stroke="#ff3b3b" stroke-width="2"/>
+                                <line x1="80" y1="75" x2="55" y2="100" stroke="#ff3b3b" stroke-width="2"/>
+                                <rect x="120" y="75" width="25" height="25" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <line x1="120" y1="75" x2="145" y2="100" stroke="#ff3b3b" stroke-width="2"/>
+                                <line x1="145" y1="75" x2="120" y2="100" stroke="#ff3b3b" stroke-width="2"/>
+                                <rect x="55" y="120" width="25" height="25" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <line x1="55" y1="120" x2="80" y2="145" stroke="#ff3b3b" stroke-width="2"/>
+                                <line x1="80" y1="120" x2="55" y2="145" stroke="#ff3b3b" stroke-width="2"/>
+                                <rect x="120" y="120" width="25" height="25" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <line x1="120" y1="120" x2="145" y2="145" stroke="#ff3b3b" stroke-width="2"/>
+                                <line x1="145" y1="120" x2="120" y2="145" stroke="#ff3b3b" stroke-width="2"/>
+                            </g>
+                            <rect x="90" y="130" width="20" height="30" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                            <line x1="20" y1="160" x2="180" y2="160" stroke="#ff3b3b" stroke-width="2"/>
+                            <circle cx="100" cy="40" r="20" fill="#ff3b3b" opacity="0.2"/>
+                            <text x="100" y="45" font-family="Arial" font-size="12" fill="#ff3b3b" text-anchor="middle" font-weight="bold">EMPTY</text>
+                        </svg>
+                    </div>
+                    <h3>Empty Daycares</h3>
+                    <p>Licensed for <span class="highlight">99 children</span>, receiving millions in taxpayer funds. Windows blacked out. No children inside. Just fraud.</p>
+                </div>
+
+                <!-- Card 2: Quality Learing Center -->
+                <div class="story-card">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="30" y="40" width="140" height="120" rx="8" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <text x="100" y="75" font-family="Arial" font-size="18" fill="#ff3b3b" text-anchor="middle" font-weight="bold">QUALITY</text>
+                            <text x="100" y="105" font-family="Arial" font-size="18" fill="#ff3b3b" text-anchor="middle" font-weight="bold">LEARING</text>
+                            <line x1="70" y1="110" x2="130" y2="110" stroke="#ff3b3b" stroke-width="3" stroke-dasharray="5,5"/>
+                            <text x="100" y="135" font-family="Arial" font-size="18" fill="#ff3b3b" text-anchor="middle" font-weight="bold">CENTER</text>
+                            <circle cx="150" cy="100" r="15" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                            <text x="150" y="107" font-family="Arial" font-size="20" fill="#ff3b3b" text-anchor="middle" font-weight="bold">?</text>
+                        </svg>
+                    </div>
+                    <h3>"Quality Learing Center"</h3>
+                    <p>A daycare that can't even spell "Learning" right received <span class="highlight">$4 million</span> in state funds. You can't make this up.</p>
+                </div>
+
+                <!-- Card 3: $9 Billion Missing -->
+                <div class="story-card">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50 L80 70 L80 130 C80 140 90 150 100 150 C110 150 120 140 120 130 L120 70 Z" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <text x="100" y="110" font-family="Arial" font-size="36" fill="#ff3b3b" text-anchor="middle" font-weight="bold">$</text>
+                            <ellipse cx="100" cy="70" rx="20" ry="8" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <ellipse cx="100" cy="150" rx="15" ry="8" fill="#ff3b3b" opacity="0.3"/>
+                            <g opacity="0.6">
+                                <rect x="95" y="160" width="10" height="5" fill="#ff3b3b"/>
+                                <rect x="88" y="170" width="10" height="5" fill="#ff3b3b"/>
+                                <rect x="102" y="175" width="10" height="5" fill="#ff3b3b"/>
+                            </g>
+                            <circle cx="140" cy="60" r="25" fill="#ff3b3b" opacity="0.2"/>
+                            <text x="140" y="67" font-family="Arial" font-size="16" fill="#ff3b3b" text-anchor="middle" font-weight="bold">$9B</text>
+                        </svg>
+                    </div>
+                    <h3>$9 Billion Missing</h3>
+                    <p>Federal prosecutors estimate <span class="highlight">$9 billion</span> in fraud. That's almost Somalia's entire GDP.</p>
+                </div>
+
+                <!-- Card 4: One Man's Investigation (Now links to YouTube) -->
+                <a href="https://www.youtube.com/watch?v=r8AulCA1aOQ" target="_blank" class="story-card youtube-link" aria-label="Watch One Man's Investigation on YouTube">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="90" cy="90" r="40" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <line x1="120" y1="120" x2="150" y2="150" stroke="#ff3b3b" stroke-width="5" stroke-linecap="round"/>
+                            <g opacity="0.6">
+                                <rect x="70" y="70" width="40" height="50" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <line x1="75" y1="80" x2="105" y2="80" stroke="#ff3b3b" stroke-width="1"/>
+                                <line x1="75" y1="90" x2="105" y2="90" stroke="#ff3b3b" stroke-width="1"/>
+                                <line x1="75" y1="100" x2="105" y2="100" stroke="#ff3b3b" stroke-width="1"/>
+                                <line x1="75" y1="110" x2="95" y2="110" stroke="#ff3b3b" stroke-width="1"/>
+                            </g>
+                            <circle cx="90" cy="90" r="15" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                            <circle cx="90" cy="90" r="8" fill="#ff3b3b"/>
+                            <circle cx="150" cy="40" r="28" fill="#ff3b3b" opacity="0.2"/>
+                            <text x="150" y="42" font-family="Arial" font-size="12" fill="#ff3b3b" text-anchor="middle" font-weight="bold">100M+</text>
+                            <text x="150" y="52" font-family="Arial" font-size="8" fill="#ff3b3b" text-anchor="middle">VIEWS</text>
+                        </svg>
+                        <div class="play-overlay" aria-hidden="true">
+                            <svg viewBox="0 0 100 100" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="48" fill="#ff3b3b" opacity="0.95"/>
+                                <polygon points="42,34 70,50 42,66" fill="#fff"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>One Man's Investigation</h3>
+                    <p>Nick Shirley's 42-minute exposé uncovered <span class="highlight">$110M in fraud</span> in ONE day. 100M+ views later, the FBI is involved.</p>
+                    <div class="card-link youtube-cta">Watch the Full Exposé →</div>
+                </a>
+
+                <!-- Card 5: Government Response -->
+                <div class="story-card">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 40 L40 70 L40 150 L160 150 L160 70 Z" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <line x1="60" y1="70" x2="60" y2="150" stroke="#ff3b3b" stroke-width="3"/>
+                            <line x1="80" y1="70" x2="80" y2="150" stroke="#ff3b3b" stroke-width="3"/>
+                            <line x1="100" y1="70" x2="100" y2="150" stroke="#ff3b3b" stroke-width="3"/>
+                            <line x1="120" y1="70" x2="120" y2="150" stroke="#ff3b3b" stroke-width="3"/>
+                            <line x1="140" y1="70" x2="140" y2="150" stroke="#ff3b3b" stroke-width="3"/>
+                            <line x1="100" y1="40" x2="100" y2="20" stroke="#ff3b3b" stroke-width="2"/>
+                            <path d="M100 20 L130 28 L100 36" fill="#ff3b3b"/>
+                            <circle cx="50" cy="110" r="18" fill="#ff3b3b" opacity="0.2"/>
+                            <text x="50" y="115" font-family="Arial" font-size="12" fill="#ff3b3b" text-anchor="middle" font-weight="bold">FBI</text>
+                            <circle cx="150" cy="110" r="18" fill="#ff3b3b" opacity="0.2"/>
+                            <text x="150" y="115" font-family="Arial" font-size="11" fill="#ff3b3b" text-anchor="middle" font-weight="bold">DHS</text>
+                            <rect x="30" y="150" width="140" height="10" fill="#ff3b3b" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Government Response</h3>
+                    <p>Within 48 hours: <span class="highlight">FBI surged personnel</span>, DHS launched investigations, and the White House called for accountability.</p>
+                    <a href="https://www.axios.com/2025/12/29/nick-shirley-minnesota-fraud-vance-fbi-somali" target="_blank" class="card-link">Read Official Response →</a>
+                </div>
+
+                <!-- Card 6: Justice for Joey -->
+                <div class="story-card">
+                    <div class="card-illustration">
+                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="70" r="25" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <path d="M75 100 L75 140 L125 140 L125 100" stroke="#ff3b3b" stroke-width="3" fill="none"/>
+                            <text x="100" y="80" font-family="Arial" font-size="28" fill="#ff3b3b" text-anchor="middle" font-weight="bold">?</text>
+                            <g transform="translate(100, 110)">
+                                <line x1="-30" y1="50" x2="30" y2="50" stroke="#ff3b3b" stroke-width="3"/>
+                                <line x1="0" y1="50" x2="0" y2="20" stroke="#ff3b3b" stroke-width="3"/>
+                                <line x1="-25" y1="20" x2="25" y2="20" stroke="#ff3b3b" stroke-width="2"/>
+                                <path d="M-25 20 L-30 30 L-20 30 Z" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                                <path d="M25 20 L20 30 L30 30 Z" stroke="#ff3b3b" stroke-width="2" fill="none"/>
+                            </g>
+                            <path d="M40 50 Q40 40 50 40 Q60 40 60 50 Q60 45 55 45 Q50 45 50 50 Q50 45 45 45 Q40 45 40 50" fill="#ff3b3b" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Justice for Joey</h3>
+                    <p>Joey is the child who was never enrolled. The taxpayer dollars that vanished. The accountability that's overdue. <span class="highlight">We work too hard to stay silent.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-content">
+            <p class="quote-text">"A <span class="emphasis">kindergartner</span> could figure out that there's fraud going on."</p>
+            <p class="quote-attribution">— <strong>Nick Shirley</strong>, Independent Journalist, Fox News Interview</p>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="tokenomics-section" id="tokenomics">
+        <div class="section-header">
+            <span class="section-label">Tokenomics</span>
+            <h2 class="section-title">Fair Launch. No BS. Two Chains.</h2>
+            <p class="section-subtitle">100% of tokens available at launch on both Solana and Base. No presale. No team allocation.</p>
+        </div>
+
+        <div class="tokenomics-grid">
+            <div class="token-stat">
+                <div class="token-stat-value">1B</div>
+                <div class="token-stat-label">Total Supply (Each Chain)</div>
+            </div>
+            <div class="token-stat">
+                <div class="token-stat-value">0%</div>
+                <div class="token-stat-label">Buy/Sell Tax</div>
+            </div>
+            <div class="token-stat">
+                <div class="token-stat-value">100%</div>
+                <div class="token-stat-label">LP Burned</div>
+            </div>
+            <div class="token-stat">
+                <div class="token-stat-value">2</div>
+                <div class="token-stat-label">Chains Live</div>
+            </div>
+        </div>
+
+        <div class="chain-contracts">
+            <!-- Solana Contract -->
+            <div class="contract-box solana">
+                <div class="contract-info">
+                    <div class="chain-icon solana">
+                        <svg viewBox="0 0 397.7 311.7" fill="currentColor">
+                            <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"/>
+                            <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"/>
+                            <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"/>
+                        </svg>
+                    </div>
+                    <div class="contract-details">
+                        <span class="contract-chain">Solana</span>
+                        <span class="contract-address" id="solana-ca">DEPLOY_SOLANA_CONTRACT_HERE</span>
+                    </div>
+                </div>
+                <div class="contract-actions">
+                    <button class="copy-btn" onclick="copyContract('solana-ca')">Copy</button>
+                    <a href="https://raydium.io/swap" target="_blank" class="buy-btn solana">Buy on Raydium</a>
+                </div>
+            </div>
+
+            <!-- Base Contract -->
+            <div class="contract-box base">
+                <div class="contract-info">
+                    <div class="chain-icon base">
+                        <svg viewBox="0 0 111 111" fill="currentColor">
+                            <path d="M54.921 110.034c30.346 0 54.948-24.602 54.948-54.948S85.267.138 54.921.138 0 24.74 0 55.086s24.602 54.948 54.921 54.948z"/>
+                            <path fill="#0052FF" d="M55.39 94.238c21.596 0 39.109-17.513 39.109-39.109S76.986 16.02 55.39 16.02c-20.653 0-37.548 16.009-39.009 36.291h52.091v5.618H16.381c1.461 20.282 18.356 36.309 39.009 36.309z"/>
+                        </svg>
+                    </div>
+                    <div class="contract-details">
+                        <span class="contract-chain">Base</span>
+                        <span class="contract-address" id="base-ca">DEPLOY_BASE_CONTRACT_HERE</span>
+                    </div>
+                </div>
+                <div class="contract-actions">
+                    <button class="copy-btn" onclick="copyContract('base-ca')">Copy</button>
+                    <a href="https://app.uniswap.org" target="_blank" class="buy-btn base">Buy on Uniswap</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Buy Section -->
+    <section class="how-to-buy-section" id="buy">
+        <div class="how-to-buy-content">
+            <div class="section-header">
+                <span class="section-label">Get Started</span>
+                <h2 class="section-title">How to Buy $J4J</h2>
+                <p class="section-subtitle">Choose your preferred chain and follow the steps below.</p>
+            </div>
+
+            <!-- Chain Tabs -->
+            <div class="chain-tabs">
+                <button class="chain-tab active solana" onclick="switchChain('solana')">
+                    <svg viewBox="0 0 397.7 311.7" fill="currentColor">
+                        <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"/>
+                        <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"/>
+                        <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"/>
+                    </svg>
+                    Solana
+                </button>
+                <button class="chain-tab base" onclick="switchChain('base')">
+                    <svg viewBox="0 0 111 111" fill="currentColor">
+                        <path d="M54.921 110.034c30.346 0 54.948-24.602 54.948-54.948S85.267.138 54.921.138 0 24.74 0 55.086s24.602 54.948 54.921 54.948z"/>
+                    </svg>
+                    Base
+                </button>
+            </div>
+
+            <!-- Solana Instructions -->
+            <div class="chain-content active" id="solana-content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number solana">1</div>
+                        <div class="step-content">
+                            <h3>Get a Solana Wallet</h3>
+                            <p>Download <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a> wallet. These are the most trusted Solana wallets.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number solana">2</div>
+                        <div class="step-content">
+                            <h3>Get Some SOL</h3>
+                            <p>Buy SOL from an exchange like <a href="https://coinbase.com" target="_blank">Coinbase</a> or <a href="https://binance.com" target="_blank">Binance</a>, then send it to your wallet.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number solana">3</div>
+                        <div class="step-content">
+                            <h3>Swap on Raydium or Jupiter</h3>
+                            <p>Go to <a href="https://raydium.io/swap" target="_blank">Raydium</a> or <a href="https://jup.ag" target="_blank">Jupiter</a>. Paste the $J4J contract address and swap your SOL for $J4J.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number solana">4</div>
+                        <div class="step-content">
+                            <h3>HODL for Justice</h3>
+                            <p>You're now part of the movement. Share the story. Demand accountability. Justice for Joey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Base Instructions -->
+            <div class="chain-content" id="base-content">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number base">1</div>
+                        <div class="step-content">
+                            <h3>Get a Base-Compatible Wallet</h3>
+                            <p>Download <a href="https://metamask.io" target="_blank">MetaMask</a> or <a href="https://www.coinbase.com/wallet" target="_blank">Coinbase Wallet</a>. Add the Base network to your wallet.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number base">2</div>
+                        <div class="step-content">
+                            <h3>Get Some ETH on Base</h3>
+                            <p>Bridge ETH to Base using the <a href="https://bridge.base.org" target="_blank">Base Bridge</a>, or buy directly on Coinbase and withdraw to Base.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number base">3</div>
+                        <div class="step-content">
+                            <h3>Swap on Uniswap</h3>
+                            <p>Go to <a href="https://app.uniswap.org" target="_blank">Uniswap</a>. Select Base network, paste the $J4J contract address, and swap your ETH for $J4J.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number base">4</div>
+                        <div class="step-content">
+                            <h3>HODL for Justice</h3>
+                            <p>You're now part of the movement. Share the story. Demand accountability. Justice for Joey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section" id="community">
+        <div class="community-content">
+            <div class="section-header">
+                <span class="section-label">Join the Movement</span>
+                <h2 class="section-title">Community</h2>
+                <p class="section-subtitle">Connect with fellow truth-seekers. Share the story. Demand justice.</p>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <span>Twitter/X</span>
+                </a>
+                <a href="#" class="social-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+                    <span>Discord</span>
+                </a>
+                <a href="#" class="social-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    <span>Telegram</span>
+                </a>
+                <a href="https://dexscreener.com" class="social-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                    <span>DexScreener</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-disclaimer">
+            $J4J is a meme coin with no intrinsic value or expectation of financial return. 
+            This is not financial advice. Always do your own research. 
+            The token is created to raise awareness about government fraud and accountability. 
+            Trade responsibly. Available on Solana and Base chains.
+        </p>
+        <div class="footer-links">
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <a href="https://twitter.com/nickshirleyy" target="_blank">Nick Shirley</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        function copyContract(elementId) {
+            const address = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        function switchChain(chain) {
+            // Update tabs
+            document.querySelectorAll('.chain-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.chain-tab.${chain}`).classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.chain-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${chain}-content`).classList.add('active');
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-card, .token-stat, .step, .contract-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+    </script>
+        <script>
+        // Chromatic aberration glitch controller
+        (function(){
+            const chromaticEl = document.querySelector('.hero h1 .chromatic-glitch');
+            if(!chromaticEl) return;
+
+            function triggerChromaticGlitch() {
+                chromaticEl.classList.add('glitch--active');
+                setTimeout(() => {
+                    chromaticEl.classList.remove('glitch--active');
+                }, 400); // 400ms burst
+            }
+
+            // Periodic chromatic glitches
+            setInterval(() => {
+                if(Math.random() < 0.12) { // 12% chance
+                    triggerChromaticGlitch();
+                }
+            }, 800 + Math.random() * 600); // Every 800-1400ms
+
+            // Trigger on hover
+            const hero = document.querySelector('.hero');
+            if(hero) {
+                hero.addEventListener('mouseenter', triggerChromaticGlitch);
+            }
+
+            // Initial glitch
+            setTimeout(triggerChromaticGlitch, 1200);
+
+            // Dev helper
+            window.j4j = window.j4j || {};
+            window.j4j.triggerChromaticGlitch = triggerChromaticGlitch;
+        })();
+        </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Solid color background -->
+  <rect width="512" height="512" fill="#ff2d2d"/>
+  
+  <!-- Simple large J4J -->
+  <text x="256" y="300" 
+        font-family="Arial Black, sans-serif" 
+        font-size="200" 
+        font-weight="900" 
+        fill="#ffffff" 
+        text-anchor="middle">
+    J4J
+  </text>
+  
+  <!-- Small subtitle -->
+  <text x="256" y="380" 
+        font-family="Arial, sans-serif" 
+        font-size="28" 
+        fill="#ffffff" 
+        text-anchor="middle"
+        opacity="0.9">
+    Justice for Joey
+  </text>
+</svg>
