@@ -1629,6 +1629,17 @@
                     <span class="stat-value" id="live-volume">Loading...</span>
                 </div>
             </div>
+            
+            <!-- Stats Info Message -->
+            <div style="text-align: center; margin: 1rem 0; padding: 0.75rem; background: rgba(255, 0, 64, 0.1); border-radius: 6px;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">
+                    Live stats update automatically. For real-time trading data, visit 
+                    <a href="https://pump.fun/coin/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       style="color: var(--accent-red); font-weight: 600;">pump.fun</a>
+                </p>
+            </div>
 
             <!-- Chain Tabs -->
             <div class="chart-tabs">
@@ -1642,10 +1653,22 @@
 
             <!-- Solana Chart -->
             <div id="solana-chart" class="chart-container">
-                <iframe 
-                    src="https://dexscreener.com/solana/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump?embed=1&theme=dark&trades=0&info=0"
-                    style="width: 100%; height: 600px; border: 0; border-radius: 8px;">
-                </iframe>
+                <div style="text-align: center; padding: 2rem; background: rgba(0, 0, 0, 0.3); border-radius: 8px; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">📊 Live Trading Chart</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        View real-time price action, trades, and market data on pump.fun
+                    </p>
+                    <a href="https://pump.fun/coin/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="btn btn-primary"
+                       style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                        View Live Chart on pump.fun →
+                    </a>
+                    <p style="color: var(--text-muted); margin-top: 1.5rem; font-size: 0.85rem;">
+                        DexScreener integration coming soon
+                    </p>
+                </div>
             </div>
 
             <!-- Base Chart -->
