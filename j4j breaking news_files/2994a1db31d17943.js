@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,978688,o=>{"use strict";var i=o.i(213722);console.log("🔍 Analytics init file loaded");try{(0,i.init)({orgId:"o-1YWTMD-na1",devMode:!1})}catch(o){console.error("❌ FullStory initialization failed:",o)}o.s([])}]);

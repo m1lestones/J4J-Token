@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fraud Busters Saga | Justice for Joey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1a0a1e 0%, #0a0515 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid #dc2626;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(147, 51, 234, 0.05),
+                transparent
+            );
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%) translateX(-100%); }
+            100% { transform: translateY(100%) translateX(100%); }
+        }
+
+        .hero-title {
+            font-size: 56px;
+            color: #dc2626;
+            text-shadow: 
+                0 0 20px #dc2626,
+                0 0 40px #dc2626,
+                3px 3px 0 #9333ea,
+                -3px -3px 0 #6366f1;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 3px;
+            animation: glitch 4s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { 
+                transform: translate(0);
+            }
+            91% { 
+                transform: translate(-3px, 3px);
+            }
+            93% { 
+                transform: translate(3px, -3px);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #888;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .comic-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .comic-intro {
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .comic-intro h2 {
+            color: #dc2626;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .comic-intro p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comic-panel {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .comic-panel.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .panel-wrapper {
+            background: linear-gradient(135deg, #1a0a1e 0%, #0a0515 100%);
+            border: 3px solid #dc2626;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 
+                0 0 30px rgba(220, 38, 38, 0.3),
+                inset 0 0 50px rgba(147, 51, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .comic-panel:hover .panel-wrapper::before {
+            left: 100%;
+        }
+
+        .panel-image {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .panel-caption {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(220, 38, 38, 0.1);
+            border-left: 4px solid #dc2626;
+            border-radius: 8px;
+        }
+
+        .panel-caption h3 {
+            color: #dc2626;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .panel-caption p {
+            color: #aaa;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .chapter-divider {
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .chapter-divider::before,
+        .chapter-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #dc2626, transparent);
+        }
+
+        .chapter-divider::before {
+            left: 0;
+        }
+
+        .chapter-divider::after {
+            right: 0;
+        }
+
+        .chapter-title {
+            display: inline-block;
+            background: #000;
+            padding: 15px 30px;
+            color: #dc2626;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #dc2626;
+            border-radius: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1a0a1e 0%, #0a0515 100%);
+            border: 3px solid #dc2626;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px auto;
+            max-width: 800px;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            color: #dc2626;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-text {
+            font-size: 18px;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.6);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.05) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .chapter-title {
+                font-size: 20px;
+            }
+
+            .chapter-divider::before,
+            .chapter-divider::after {
+                width: 25%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-title">THE FRAUD BUSTERS SAGA</h1>
+        <p class="hero-subtitle">Justice for Joey: The Comic Book Story</p>
+    </div>
+
+    <!-- Comic Container -->
+    <div class="comic-container">
+        
+        <!-- Intro -->
+        <div class="comic-intro">
+            <h2>🦸‍♂️ The True Story Begins</h2>
+            <p>
+                What you're about to read isn't fiction. This is the real story of how a 23-year-old independent journalist's 
+                viral video exposed hundreds of millions in government fraud, sparked FBI investigations, influenced the White House, 
+                and inspired a movement. From Nick Shirley's groundbreaking investigation to the Feeding Our Future conviction and 
+                the rise of citizen journalism, this is Justice for Joey – where accountability meets blockchain.
+            </p>
+        </div>
+
+        <!-- Panel 1: The Community -->
+        <div class="comic-panel" id="chapter-1">
+            <div class="panel-wrapper">
+                <img src="../uploads/FB_moms_neighbors_content.jpg" alt="Fraud Busters Community" class="panel-image">
+                <div class="panel-caption">
+                    <h3>📱 Chapter 1: We Are All Fraud Busters</h3>
+                    <p>
+                        The Fraud Busters aren't just characters—they're real people. Moms, neighbors, content creators. 
+                        Armed with smartphones and a sense of justice, everyday citizens become the first line of defense 
+                        against corruption. It's the moms. The neighbors. The content creators.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 2: The Heroes -->
+        <div class="comic-panel" id="chapter-2">
+            <div class="panel-wrapper">
+                <img src="../uploads/_.jpg" alt="Captain Fraud Buster and J4J" class="panel-image">
+                <div class="panel-caption">
+                    <h3>⚡ Chapter 2: The Birth of Heroes</h3>
+                    <p>
+                        From the chaos emerged two champions: Captain Fraud Buster (Nick Shirley) and the J4J Avenger. 
+                        Together, they vow to hold the corrupt accountable. "We birth of ! We will hold them accountable." 
+                        The mission is clear: expose fraud, demand justice.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter Divider -->
+        <div class="chapter-divider">
+            <span class="chapter-title">🔍 The Investigation</span>
+        </div>
+
+        <!-- Panel 3: Nick's Investigation -->
+        <div class="comic-panel" id="chapter-3">
+            <div class="panel-wrapper">
+                <img src="../uploads/1_nick_investigation_image__the_hook_.jpg" alt="Nick Shirley Investigation" class="panel-image">
+                <div class="panel-caption">
+                    <h3>📰 Chapter 3: The Investigation Goes Viral</h3>
+                    <p>
+                        December 26, 2024: Independent journalist Nick Shirley releases a 42-minute investigation exposing what appears to be systematic fraud in Minnesota's child care system. Armed with his camera and publicly available data, he documents empty daycares receiving millions in taxpayer funds. The "Quality Learning Center" – which misspelled "Learning" as "Learing" – allegedly received $1.9M despite appearing abandoned. Within 48 hours, his video reaches 116M+ views on X. The FBI surges personnel to Minnesota. Vice President JD Vance calls it "more useful journalism than any Pulitzer winner."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 4: The Token -->
+        <div class="comic-panel" id="chapter-4">
+            <div class="panel-wrapper">
+                <img src="../uploads/unnamed.jpg" alt="J4J Token" class="panel-image">
+                <div class="panel-caption">
+                    <h3>🪙 Chapter 4: Justice on the Blockchain</h3>
+                    <p>
+                        The movement needed a symbol. Enter $J4J—the Justice for Joey token. Built on blockchain technology, 
+                        this isn't just a cryptocurrency. It's a rallying cry. A digital monument to accountability. 
+                        Every holder becomes part of the Fraud Busters movement.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 5: The Awakening -->
+        <div class="comic-panel" id="chapter-5">
+            <div class="panel-wrapper">
+                <img src="../uploads/transparent_journalism.jpg" alt="Citizens Awakening" class="panel-image">
+                <div class="panel-caption">
+                    <h3>🌅 Chapter 5: Citizens Right Awakening</h3>
+                    <p>
+                        At dawn, the people rise. Armed with truth and transparency, citizens demand real journalism. 
+                        The $J4J token becomes a beacon of hope: "Decentralize Community - Powered by Fraud Busters." 
+                        Freedom of speech prevails. Real transparent journalism wins.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter Divider -->
+        <div class="chapter-divider">
+            <span class="chapter-title">⚔️ The Fight Continues</span>
+        </div>
+
+        <!-- Panel 6: Origin of Joey -->
+        <div class="comic-panel" id="chapter-6">
+            <div class="panel-wrapper">
+                <img src="../uploads/682ADB93-11E4-45B8-924D-8276E996DEFF_1_102_o.jpeg" alt="Origin of Joey" class="panel-image">
+                <div class="panel-caption">
+                    <h3>👻 Chapter 6: The Feeding Our Future Scandal</h3>
+                    <p>
+                        But Nick's investigation didn't happen in a vacuum. From 2020-2022, Aimee Bock's nonprofit "Feeding Our Future" orchestrated the largest COVID-19 fraud scheme in U.S. history. They claimed to serve 91 million meals to children – meals that never existed. $250 million stolen. 299 "meal sites" at their peak. In March 2025, a jury convicted Bock on all charges after a dramatic trial that included a $120,000 cash bribe attempt on a juror. Joey represents every fictional child in both scandals – the ghost enrollments, the fake daycares, the phantom meal sites. Every stolen dollar has a name, and that name is Joey.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 7: Ring Smashed -->
+        <div class="comic-panel" id="chapter-7">
+            <div class="panel-wrapper">
+                <img src="../uploads/6A02303E-A0F8-459A-ABF1-72DE8C7F25A5_1_102_o.jpeg" alt="Fraud Ring Smashed" class="panel-image">
+                <div class="panel-caption">
+                    <h3>💥 Chapter 7: The Government Responds</h3>
+                    <p>
+                        The response was unprecedented. FBI Director Kash Patel: "The FBI has surged personnel and investigative resources to Minnesota." Vice President JD Vance: "This is the most useful journalism of 2024." Department of Homeland Security launches door-to-door investigations. Within two weeks, federal child care payments to Minnesota are frozen. A new Assistant Attorney General position is created to focus solely on Minnesota fraud. Governor Tim Walz, facing criticism for years of oversight failures, announces he will not seek re-election. The Fraud Busters didn't just expose fraud – they forced the entire system to respond.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 8: The Saga -->
+        <div class="comic-panel" id="chapter-8">
+            <div class="panel-wrapper">
+                <img src="../uploads/CAA0C355-2F98-42C9-B404-98FE6DBBF15F_1_102_o.jpeg" alt="Justice for Joey Saga" class="panel-image">
+                <div class="panel-caption">
+                    <h3>📖 Chapter 8: The Complete Timeline</h3>
+                    <p>
+                        **2020-2022**: Feeding Our Future steals $250M through fake meal programs. **July 2019**: Minnesota Department of Education first identifies suspicious activity. **February 2021**: FBI begins investigation. **January 2022**: FBI raids Aimee Bock's home and office. **2024**: 70+ people charged, 50+ convicted, including $120K juror bribe attempt. **December 26, 2024**: Nick Shirley releases viral Minnesota daycare investigation. **December 27-28**: JD Vance and Elon Musk amplify video to 116M+ views. **December 29**: FBI and DHS surge resources to Minnesota. **January 2025**: Federal payments frozen. Gov. Walz drops re-election bid. **March 2025**: Aimee Bock convicted on all counts, ordered to forfeit $5.2M. The saga continues...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 9: Confronting Corruption -->
+        <div class="comic-panel" id="chapter-9">
+            <div class="panel-wrapper">
+                <img src="../uploads/88E4D839-3E7D-4E8F-AED9-AC9F1E8F1D18_1_105_c.jpeg" alt="Quality Learning Center" class="panel-image">
+                <div class="panel-caption">
+                    <h3>❄️ Chapter 9: Face to Face with Fraud</h3>
+                    <p>
+                        The Fraud Busters confront the truth at the Quality Learning Center. "Zero heat. Millions missing." 
+                        While politicians fumble with excuses and secret documents, the heroes stand firm. "I-I-I don't know!" 
+                        isn't good enough. The fight for accountability never stops.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="cta-section">
+            <h2 class="cta-title">🦸‍♂️ Join the Fraud Busters</h2>
+            <p class="cta-text">
+                This isn't just a comic book story—it's happening right now. Every holder of $J4J becomes 
+                part of this movement. Every fraud we expose makes the token rise. Are you ready to be a hero?
+            </p>
+            <div class="cta-buttons">
+                <a href="#buy" class="cta-button">Buy $J4J Token</a>
+                <a href="https://t.me/j4jtoken" class="cta-button secondary" target="_blank">Join Telegram</a>
+                <a href="https://twitter.com/J4JToken" class="cta-button secondary" target="_blank">Follow on X</a>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid rgba(220, 38, 38, 0.3);">
+                <p style="color: #888; font-size: 14px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                    Connect With Us On All Platforms
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://www.instagram.com/j4jtoken/" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@j4jtoken" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">🎵 TikTok</a>
+                    <a href="https://www.youtube.com/@J4JToken" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">📺 YouTube</a>
+                    <a href="https://www.facebook.com/j4jtoken" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">👥 Facebook</a>
+                    <a href="https://www.threads.com/@j4jtoken" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">🧵 Threads</a>
+                    <a href="https://farcaster.xyz/j4jtoken" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">🟣 Farcaster</a>
+                    <a href="https://discord.gg/DTMz2WFE" target="_blank" style="color: #dc2626; text-decoration: none; font-size: 14px; transition: all 0.3s;">💬 Discord</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all comic panels
+        document.querySelectorAll('.comic-panel').forEach(panel => {
+            observer.observe(panel);
+        });
+    </script>
+</body>
+</html>
