@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J4J Token Whitepaper | Justice for Joey</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="J4J Token Whitepaper - A movement-driven token fighting government fraud. Read our complete documentation and tokenomics.">
+    <meta name="keywords" content="J4J Token, Justice for Joey, Whitepaper, Cryptocurrency, Government Fraud, Nick Shirley, Solana, Base">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="J4J Token Whitepaper | Justice for Joey">
+    <meta property="og:description" content="Complete documentation for Justice for Joey ($J4J) - A movement-driven token fighting government fraud.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent-red: #ff3b3b;
+            --accent-red-glow: rgba(255, 59, 59, 0.4);
+            --accent-gold: #ffd700;
+            --accent-gold-glow: rgba(255, 215, 0, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Noise Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--accent-red) 0%, #991b1b 100%);
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%);
+            animation: headerGlow 10s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, -20px) rotate(3deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .back-btn {
+            background: var(--accent-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #e60000;
+            transform: translateY(-1px);
+        }
+
+        /* Content */
+        .content {
+            background: var(--bg-card);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
+        }
+
+        /* Typography */
+        .content h1 {
+            font-family: 'Archivo Black', sans-serif;
+            color: var(--accent-red);
+            font-size: 2.5rem;
+            margin: 2rem 0 1.5rem 0;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-family: 'Archivo Black', sans-serif;
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+        }
+
+        .content h3 {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.75rem 0;
+            font-weight: 700;
+        }
+
+        .content h4 {
+            color: #ffa500;
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .content p {
+            margin: 1rem 0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .content ul, .content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .content li {
+            margin: 0.5rem 0;
+            line-height: 1.7;
+        }
+
+        .content strong {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .content em {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .content code {
+            background: rgba(255, 59, 59, 0.1);
+            color: var(--accent-red);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .content pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--accent-gold);
+            background: rgba(255, 215, 0, 0.05);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .content hr {
+            border: none;
+            border-top: 2px solid var(--accent-red);
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: rgba(255, 59, 59, 0.05);
+            border: 1px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .toc h3 {
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+        .toc ol {
+            list-style: decimal;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: var(--accent-red);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            color: var(--accent-red);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Links */
+        .content a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .content a:hover {
+            border-bottom-color: var(--accent-gold);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">$J4J Token</a>
+        <div class="nav-links">
+            <a href="/#story">Story</a>
+            <a href="/#tokenomics">Tokenomics</a>
+            <a href="/#buy">How to Buy</a>
+            <a href="/#community">Community</a>
+            <a href="/" class="back-btn">← Back to Main Site</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content fade-in">
+            <h1>🦸‍♂️ Justice for Joey Whitepaper</h1>
+            <p class="subtitle">A Movement-Driven Token Fighting Government Fraud</p>
+            <div class="version-badge">Version 1.0 • January 13, 2026</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Content -->
+        <div class="content fade-in delay-1">
+            <h1>JUSTICE FOR JOEY ($J4J)</h1>
+            
+            <div class="toc">
+                <h3>📋 Table of Contents</h3>
+                <ol>
+                    <li><a href="#executive-summary">Executive Summary</a></li>
+                    <li><a href="#origin-story">The Origin Story</a></li>
+                    <li><a href="#problem">The Problem We're Solving</a></li>
+                    <li><a href="#vision-mission">Vision & Mission</a></li>
+                    <li><a href="#tokenomics">Tokenomics</a></li>
+                    <li><a href="#ecosystem">The Fraud Busters Ecosystem</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#community">Community & Governance</a></li>
+                    <li><a href="#risks">Risk Factors</a></li>
+                    <li><a href="#legal">Legal Disclaimer</a></li>
+                </ol>
+            </div>
+
+            <hr>
+
+            <h2 id="executive-summary">📄 Executive Summary</h2>
+            
+            <p>Justice for Joey ($J4J) is a community-driven token on Solana and Base that represents a movement demanding accountability for government fraud. Unlike typical meme coins based on random animals or fictional characters, J4J is rooted in <strong>Nick Shirley's December 2024 viral exposé</strong> that uncovered empty Minnesota daycares receiving taxpayer funds using fake children's identities.</p>
+
+            <p>With over <strong>116 million views</strong>, his investigation triggered an FBI probe into what federal prosecutors estimate is a <em>$9 billion fraud scheme</em> in Minnesota's Child Care Assistance Program. <strong>"Joey"</strong> symbolizes the fictional children used in these fraudulent claims – every ghost enrollment, every fake daycare license, every stolen taxpayer dollar.</p>
+
+            <h3>🎯 Core Mission</h3>
+            <p><strong>Create a sustainable ecosystem where the more fraud exposed = the higher $J4J rises.</strong></p>
+
+            <h3>✨ What Makes J4J Unique</h3>
+            <ul>
+                <li>Rooted in real, documented <strong>$9B+ fraud case</strong> under FBI investigation</li>
+                <li><strong>Mission-driven:</strong> Every holder represents a witness to fraud</li>
+                <li><strong>Real-world impact:</strong> "Taxpayer Refund" program funds educational supplies for schools affected by fraud</li>
+                <li><strong>Superhero-themed</strong> "Fraudbusters" NFT collection with governance rights</li>
+                <li>Combines cryptocurrency's <em>decentralized nature</em> with social accountability</li>
+            </ul>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Dec 29, 2025</h4>
+                    <p>Launch Date (Solana)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>1B</h4>
+                    <p>Total Supply (Per Chain)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>0%</h4>
+                    <p>Transaction Tax</p>
+                </div>
+                <div class="stat-card">
+                    <h4>$169K+</h4>
+                    <p>Peak Market Cap</p>
+                </div>
+            </div>
+
+            <h3>🚀 Growth Trajectory</h3>
+            <ul>
+                <li><strong>70+ holders</strong> within first weeks</li>
+                <li>Peak market cap: <strong>$169K+</strong></li>
+                <li>Consistent daily trading volume</li>
+                <li><em>Organic community growth</em> (not artificial pump schemes)</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="origin-story">📖 The Origin Story</h2>
+
+            <h3>🕵️ Nick Shirley's Investigation</h3>
+            <p>On <strong>December 26, 2024</strong>, independent journalist Nick Shirley posted a 42-minute video exposing what appeared to be widespread fraud in Minnesota's Child Care Assistance Program (CCAP). His investigation revealed:</p>
+
+            <ul>
+                <li><strong>"Quality Learning Center":</strong> A daycare that misspelled "Learning" as "Learing," allegedly received <em>$1.9M</em> in taxpayer funds while appearing abandoned</li>
+                <li><strong>Multiple Facilities:</strong> 10+ daycares across Minneapolis showing no signs of children or operations</li>
+                <li><strong>Viral Impact:</strong> 116M+ views on X (Twitter), 1.6M+ on YouTube</li>
+                <li><strong>Government Response:</strong> FBI Director Kash Patel, Vice President JD Vance, and the Department of Homeland Security all responded within 72 hours</li>
+            </ul>
+
+            <h3>🍎 The Feeding Our Future Scandal</h3>
+            <p>Shirley's investigation built upon earlier fraud cases, most notably:</p>
+
+            <blockquote>
+                <strong>Feeding Our Future (2020-2022)</strong><br>
+                • <strong>Mastermind:</strong> Aimee Bock (convicted March 2025)<br>
+                • <strong>Amount Stolen:</strong> $250 million in COVID-19 relief funds<br>
+                • <strong>Claimed Meals:</strong> 91 million meals that were never served<br>
+                • <strong>Legal Action:</strong> 70+ people charged, 50+ convicted<br>
+                • <strong>Juror Bribery:</strong> $120,000 cash attempted to influence verdict<br>
+                • <strong>Forfeiture:</strong> Aimee Bock ordered to forfeit $5.2M
+            </blockquote>
+
+            <h3>👶 Joey: The Symbol</h3>
+            <p><strong>"Joey"</strong> represents every fictional child used to commit fraud. Every ghost enrollment. Every fake daycare. Every stolen taxpayer dollar. <em>Joey is the voice for accountability when the system fails.</em></p>
+
+            <hr>
+
+            <h2 id="problem">🚨 The Problem We're Solving</h2>
+
+            <h3>📊 Government Fraud is Systematic</h3>
+            <p><strong>Minnesota's Documented Fraud Issues:</strong></p>
+            <ul>
+                <li><strong>$250M</strong> - Feeding Our Future scandal</li>
+                <li><strong>$110M+</strong> - Alleged fraud discovered in Nick Shirley's single-day investigation</li>
+                <li><strong>$9B</strong> - Federal prosecutors' estimate of total CCAP fraud exposure</li>
+                <li><strong>Ongoing</strong> - 55+ daycare providers under investigation (Jan 2025)</li>
+            </ul>
+
+            <h3>🔍 The Accountability Gap</h3>
+            <p>Traditional systems failed to prevent or detect this fraud:</p>
+            <ul>
+                <li>❌ State inspectors visited facilities regularly but missed obvious fraud</li>
+                <li>❌ Licensing violations documented but not acted upon</li>
+                <li>❌ Whistleblowers ignored or silenced</li>
+                <li>❌ Investigations only escalated after viral media attention</li>
+            </ul>
+
+            <h3>💡 The Power of Citizen Journalism</h3>
+            <p>Nick Shirley's video achieved what years of government oversight could not:</p>
+            <ul>
+                <li><strong>Within 48 hours:</strong> FBI surged personnel to Minnesota</li>
+                <li><strong>Within 1 week:</strong> Department of Homeland Security launched investigations</li>
+                <li><strong>Within 2 weeks:</strong> Vice President JD Vance announced new Assistant Attorney General role focused on Minnesota fraud</li>
+                <li><strong>Federal Action:</strong> Child care payments to Minnesota temporarily frozen</li>
+            </ul>
+
+            <p><em><strong>This proves:</strong> Decentralized, citizen-led investigations can drive real-world accountability.</em></p>
+
+            <hr>
+
+            <h2 id="vision-mission">🎯 Vision & Mission</h2>
+
+            <h3>🔮 Our Vision</h3>
+            <p>Build a decentralized movement where everyday citizens become <strong>"Fraud Busters"</strong> – empowered to expose corruption, demand transparency, and restore trust in public systems.</p>
+
+            <h3>🚀 Our Mission</h3>
+
+            <h4>For Token Holders:</h4>
+            <ul>
+                <li>Create financial incentive aligned with social good</li>
+                <li>Reward early believers as the ecosystem grows</li>
+                <li>Provide governance rights in future fraud-fighting initiatives</li>
+                <li>Access to exclusive community and real-world impact programs</li>
+            </ul>
+
+            <h4>For Society:</h4>
+            <ul>
+                <li>Amplify fraud exposés through viral content</li>
+                <li>Create economic pressure for accountability</li>
+                <li>Build a permanent record of corruption on blockchain</li>
+                <li>Fund independent journalism and investigations</li>
+                <li>Support schools and communities affected by fraud</li>
+            </ul>
+
+            <h3>📈 The Formula</h3>
+            <pre><code>More Fraud Exposed → More Awareness → More $J4J Holders → Token Value Rises</code></pre>
+
+            <p>This creates a <strong>self-sustaining cycle:</strong></p>
+            <ol>
+                <li>Community discovers fraud case</li>
+                <li>$J4J amplifies the story</li>
+                <li>Media attention increases</li>
+                <li>New holders join the movement</li>
+                <li>Token rises, rewarding early supporters</li>
+                <li>Success funds more investigations</li>
+            </ol>
+
+            <hr>
+
+            <h2 id="tokenomics">💰 Tokenomics</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>1,000,000,000</h4>
+                    <p>Total Supply (Per Chain)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>100%</h4>
+                    <p>Community Allocation</p>
+                </div>
+                <div class="stat-card">
+                    <h4>0%</h4>
+                    <p>Team Tokens</p>
+                </div>
+                <div class="stat-card">
+                    <h4>0%</h4>
+                    <p>Buy/Sell Tax</p>
+                </div>
+            </div>
+
+            <h3>🎯 Fair Launch Model</h3>
+            <ul>
+                <li><strong>100%</strong> Community distribution via pump.fun</li>
+                <li><strong>0%</strong> Team allocation</li>
+                <li><strong>0%</strong> Private sale</li>
+                <li><strong>0%</strong> Reserved tokens</li>
+            </ul>
+
+            <h3>⛓️ Dual-Chain Strategy</h3>
+
+            <h4>🟣 Solana (via pump.fun)</h4>
+            <ul>
+                <li><strong>Why:</strong> Low fees, fast transactions, strong meme coin community</li>
+                <li><strong>Launch:</strong> December 2025</li>
+                <li><strong>DEX:</strong> Graduated to Raydium</li>
+                <li><strong>Market Cap Peak:</strong> $169K+</li>
+            </ul>
+
+            <h4>🔵 Base (via Clanker)</h4>
+            <ul>
+                <li><strong>Why:</strong> Coinbase integration, easy fiat on-ramps, institutional access</li>
+                <li><strong>Launch:</strong> Coming Q1 2026</li>
+                <li><strong>DEX:</strong> Uniswap V3</li>
+                <li><strong>Bridge:</strong> Cross-chain functionality planned</li>
+            </ul>
+
+            <h3>🔐 Security & Liquidity</h3>
+            <ul>
+                <li><strong>LP Tokens:</strong> Burned (provable on-chain)</li>
+                <li><strong>Mint Authority:</strong> Revoked (cannot create new tokens)</li>
+                <li><strong>Audit:</strong> Community-verified via blockchain explorers</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="ecosystem">🦸‍♂️ The Fraud Busters Ecosystem</h2>
+
+            <h3>🎨 NFT Collection Overview</h3>
+            <ul>
+                <li><strong>Collection Name:</strong> Fraud Busters: Heroes of Accountability</li>
+                <li><strong>Supply:</strong> 10,000 unique NFTs</li>
+                <li><strong>Art Style:</strong> Comic book superhero aesthetic</li>
+                <li><strong>Utility:</strong> Governance rights + exclusive community access</li>
+            </ul>
+
+            <h3>🎭 Character Archetypes</h3>
+            <ul>
+                <li><strong>The Investigator</strong> (25%) - Detective/journalist archetype with 1.5x voting power</li>
+                <li><strong>The Whistleblower</strong> (25%) - Government insider turned hero</li>
+                <li><strong>The Citizen Guardian</strong> (30%) - Everyday person fighting for accountability</li>
+                <li><strong>The Data Analyst</strong> (15%) - Numbers expert with 2x voting power</li>
+                <li><strong>The Digital Warrior</strong> (5% - Legendary) - Tech-savvy transparency advocate with 3x voting power</li>
+            </ul>
+
+            <h3>📚 Content Universe</h3>
+            <ul>
+                <li><strong>Comic Book Series:</strong> "The Fraud Busters Saga"</li>
+                <li><strong>Music Album:</strong> "Justice for Joey: The Soundtrack"</li>
+                <li><strong>Documentary Series:</strong> Behind-the-scenes investigations</li>
+                <li><strong>Educational Content:</strong> Fraud prevention workshops</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="roadmap">🗺️ Roadmap</h2>
+
+            <h3>Q1 2026: Foundation ✅</h3>
+            <ul>
+                <li>✅ Solana launch on pump.fun (Dec 2025)</li>
+                <li>✅ Graduate to Raydium DEX</li>
+                <li>✅ Website launch (justiceforjoey.xyz)</li>
+                <li>✅ Social media establishment</li>
+                <li>✅ Community of 70+ holders</li>
+                <li>✅ Peak market cap: $169K+</li>
+            </ul>
+
+            <h3>Q2 2026: Expansion</h3>
+            <ul>
+                <li>🔮 Base chain deployment via Clanker</li>
+                <li>🔮 <strong>CoinGecko listing</strong></li>
+                <li>🔮 <strong>CoinMarketCap listing</strong></li>
+                <li>🔮 Fraud Busters NFT drop</li>
+                <li>🔮 Comic book Vol. 1 release</li>
+                <li>🔮 Partnership announcements</li>
+            </ul>
+
+            <h3>Q3 2026: Governance</h3>
+            <ul>
+                <li>🔮 Justice DAO launch</li>
+                <li>🔮 Staking platform with tiered rewards</li>
+                <li>🔮 First community-funded investigation</li>
+                <li>🔮 <strong>Taxpayer Refund program launch</strong></li>
+                <li>🔮 Cross-chain bridge activation</li>
+            </ul>
+
+            <h3>Q4 2026: Impact Scaling</h3>
+            <ul>
+                <li>🔮 Documentary series premiere</li>
+                <li>🔮 Mobile app (iOS/Android)</li>
+                <li>🔮 Major exchange listings</li>
+                <li>🔮 First Taxpayer Refund donation event</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="community">👥 Community & Governance</h2>
+
+            <h3>🗳️ Governance Model</h3>
+            <ul>
+                <li><strong>Token-Based Democracy:</strong> 1 $J4J = 1 vote</li>
+                <li><strong>NFT Multipliers:</strong> NFT holders receive 2x-3x voting power</li>
+                <li><strong>Minimum Holding:</strong> 30 days required for proposal submission</li>
+                <li><strong>Transparency:</strong> On-chain voting records</li>
+            </ul>
+
+            <h3>📋 Proposal Categories</h3>
+            <ul>
+                <li><strong>Investigation Funding</strong> (15% quorum) - Priority fraud cases</li>
+                <li><strong>Educational Programs</strong> (10% quorum) - Taxpayer Refund recipients</li>
+                <li><strong>Treasury Management</strong> (20% quorum) - Fund allocation</li>
+                <li><strong>Platform Development</strong> (12% quorum) - Feature priorities</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="risks">⚠️ Risk Factors</h2>
+
+            <h3>📈 Market Risks</h3>
+            <ul>
+                <li><strong>Cryptocurrency Volatility:</strong> Token value subject to market conditions</li>
+                <li><strong>Liquidity Risks:</strong> Dependence on DEX trading</li>
+                <li><strong>Regulatory Risks:</strong> Government regulation uncertainty</li>
+            </ul>
+
+            <h3>🎯 Mission-Specific Risks</h3>
+            <ul>
+                <li><strong>Investigation Dependency:</strong> Token relevance tied to fraud exposure success</li>
+                <li><strong>Political Risks:</strong> Government response to fraud exposure efforts</li>
+                <li><strong>Media Attention:</strong> Dependence on viral content for growth</li>
+            </ul>
+
+            <hr>
+
+            <h2 id="legal">⚖️ Legal Disclaimer</h2>
+
+            <h3>🚫 No Investment Advice</h3>
+            <p>This whitepaper does not constitute financial, investment, legal, or tax advice. $J4J is a meme token created for entertainment, community building, and social awareness purposes.</p>
+
+            <h3>💰 No Expectation of Profit</h3>
+            <p>$J4J has no intrinsic value and should not be purchased with an expectation of financial return. Any value is derived purely from community participation and market sentiment.</p>
+
+            <h3>🔍 Do Your Own Research</h3>
+            <p>Potential holders should:</p>
+            <ul>
+                <li>Understand cryptocurrency risks</li>
+                <li>Only invest amounts they can afford to lose</li>
+                <li>Consult with financial advisors</li>
+                <li>Verify all information independently</li>
+            </ul>
+
+            <hr>
+
+            <h2>🚀 Conclusion</h2>
+            
+            <p><strong>Justice for Joey ($J4J) is more than a meme token. It's a movement.</strong></p>
+
+            <p>We believe that:</p>
+            <ul>
+                <li><strong>Transparency defeats corruption</strong></li>
+                <li><strong>Communities are stronger than institutions</strong></li>
+                <li><strong>Accountability should be incentivized</strong></li>
+                <li><strong>Fraud is everyone's problem</strong></li>
+            </ul>
+
+            <p>By combining blockchain technology, community governance, and viral storytelling, we're building a sustainable ecosystem that rewards those who demand justice.</p>
+
+            <p><em><strong>The Fraud Busters are watching.</strong></em></p>
+            <p><em><strong>Joey's story will be told.</strong></em></p>
+            <p><em><strong>And accountability will win.</strong></em></p>
+
+            <hr>
+
+            <h2>🔗 Connect With Us</h2>
+
+            <h3>🌐 Website</h3>
+            <p><a href="https://justiceforjoey.xyz">justiceforjoey.xyz</a></p>
+
+            <h3>📱 Social Media</h3>
+            <ul>
+                <li><strong>Twitter/X:</strong> <a href="https://twitter.com/J4JToken">@J4JToken</a></li>
+                <li><strong>Telegram:</strong> <a href="https://t.me/j4jtoken">t.me/j4jtoken</a></li>
+                <li><strong>Discord:</strong> <a href="https://discord.gg/DTMz2WFE">discord.gg/DTMz2WFE</a></li>
+            </ul>
+
+            <h3>🔗 Smart Contracts</h3>
+            <ul>
+                <li><strong>Solana:</strong> <code>HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump</code></li>
+                <li><strong>Base:</strong> Coming Q1 2026</li>
+            </ul>
+
+            <p style="text-align: center; margin-top: 3rem; color: var(--text-muted);">
+                <em>Last Updated: January 13, 2026 | Version 1.0</em><br>
+                <strong style="color: var(--accent-red);">#JusticeForJoey #FraudBusters #J4J</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/#story">Story</a>
+            <a href="/#tokenomics">Tokenomics</a>
+            <a href="/#buy">How to Buy</a>
+            <a href="/#community">Community</a>
+            <a href="https://twitter.com/nickshirleyy" target="_blank">Nick Shirley</a>
+        </div>
+        <p>&copy; 2026 Justice for Joey Token. All rights reserved.<br>
+        This is not financial advice. Always do your own research.</p>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').slice(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
