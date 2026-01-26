@@ -133,6 +133,58 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .nav-buy {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-buy-toggle {
+            appearance: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .nav-buy-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 10px);
+            min-width: 240px;
+            background: rgba(10, 10, 10, 0.96);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.5rem;
+            display: none;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .nav-buy.open .nav-buy-menu {
+            display: block;
+        }
+
+        .nav-buy-item {
+            display: block;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid transparent;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-buy-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-color);
+            color: var(--accent-gold);
+        }
+
         .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 40px var(--accent-red-glow);
@@ -1229,7 +1281,15 @@
             <li><a href="https://birdeye.so/solana/token/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" target="_blank" rel="noopener noreferrer">Chart</a></li>
             <li><a href="#community">Community</a></li>
         </ul>
-        <a href="#buy" class="nav-cta">Buy $J4J</a>
+        <div class="nav-buy" id="navBuy">
+            <button class="nav-cta nav-buy-toggle" id="buyToggle" type="button" aria-haspopup="true" aria-expanded="false">
+                Buy $J4J
+            </button>
+            <div class="nav-buy-menu" id="buyMenu" role="menu" aria-labelledby="buyToggle">
+                <a class="nav-buy-item" role="menuitem" href="https://pump.fun/coin/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" target="_blank" rel="noopener noreferrer">Buy on Pump.fun</a>
+                <a class="nav-buy-item" role="menuitem" href="https://jup.ag/swap/SOL-HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" target="_blank" rel="noopener noreferrer">Buy on Jupiter</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -2034,6 +2094,35 @@
         // Update price immediately and then every 30 seconds
         updateLivePrice();
         setInterval(updateLivePrice, 30000);
+
+        // Buy dropdown (Pump.fun / Jupiter)
+        (function initBuyDropdown(){
+            const wrapper = document.getElementById('navBuy');
+            const toggle = document.getElementById('buyToggle');
+            const menu = document.getElementById('buyMenu');
+            if (!wrapper || !toggle || !menu) return;
+
+            const setOpen = (open) => {
+                wrapper.classList.toggle('open', open);
+                toggle.setAttribute('aria-expanded', String(open));
+            };
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setOpen(!wrapper.classList.contains('open'));
+            });
+
+            menu.addEventListener('click', () => setOpen(false));
+
+            document.addEventListener('click', (e) => {
+                if (!wrapper.contains(e.target)) setOpen(false);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') setOpen(false);
+            });
+        })();
         
     </script>
         <script>
