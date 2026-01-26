@@ -185,6 +185,54 @@
             color: var(--accent-gold);
         }
 
+        .buy-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .buy-dropdown.open .buy-menu {
+            display: block;
+        }
+
+        .buy-menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: calc(100% + 12px);
+            min-width: 260px;
+            background: rgba(10, 10, 10, 0.96);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.5rem;
+            display: none;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+            z-index: 200;
+        }
+
+        .buy-item {
+            display: block;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid transparent;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .buy-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-color);
+            color: var(--accent-gold);
+        }
+
         .nav-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 40px var(--accent-red-glow);
@@ -1346,7 +1394,15 @@
             </div>
             
             <div class="hero-cta fade-in delay-5">
-                <a href="#buy" class="btn-primary">Buy $J4J Now</a>
+                <div class="buy-dropdown" id="heroBuy">
+                    <button class="btn-primary" id="heroBuyToggle" type="button" aria-haspopup="true" aria-expanded="false">
+                        Buy $J4J Now
+                    </button>
+                    <div class="buy-menu" id="heroBuyMenu" role="menu" aria-labelledby="heroBuyToggle">
+                        <a class="buy-item" role="menuitem" href="https://pump.fun/coin/HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" target="_blank" rel="noopener noreferrer">Buy on Pump.fun</a>
+                        <a class="buy-item" role="menuitem" href="https://jup.ag/swap/SOL-HiBaLNSA8sptZfHHi6135c3dHfSgoDFvst7WidDEpump" target="_blank" rel="noopener noreferrer">Buy on Jupiter</a>
+                    </div>
+                </div>
                 <a href="https://www.youtube.com/watch?v=r8AulCA1aOQ" 
                    target="_blank" 
                    rel="noopener noreferrer"
@@ -2095,32 +2151,43 @@
         updateLivePrice();
         setInterval(updateLivePrice, 30000);
 
-        // Buy dropdown (Pump.fun / Jupiter)
-        (function initBuyDropdown(){
-            const wrapper = document.getElementById('navBuy');
-            const toggle = document.getElementById('buyToggle');
-            const menu = document.getElementById('buyMenu');
-            if (!wrapper || !toggle || !menu) return;
+        // Buy dropdowns (Pump.fun / Jupiter)
+        (function initBuyDropdowns(){
+            function initDropdown(wrapperId, toggleId, menuId) {
+                const wrapper = document.getElementById(wrapperId);
+                const toggle = document.getElementById(toggleId);
+                const menu = document.getElementById(menuId);
+                if (!wrapper || !toggle || !menu) return null;
 
-            const setOpen = (open) => {
-                wrapper.classList.toggle('open', open);
-                toggle.setAttribute('aria-expanded', String(open));
-            };
+                const setOpen = (open) => {
+                    wrapper.classList.toggle('open', open);
+                    toggle.setAttribute('aria-expanded', String(open));
+                };
 
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setOpen(!wrapper.classList.contains('open'));
-            });
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setOpen(!wrapper.classList.contains('open'));
+                });
 
-            menu.addEventListener('click', () => setOpen(false));
+                menu.addEventListener('click', () => setOpen(false));
+
+                return { wrapper, setOpen };
+            }
+
+            const instances = [
+                initDropdown('navBuy', 'buyToggle', 'buyMenu'),
+                initDropdown('heroBuy', 'heroBuyToggle', 'heroBuyMenu')
+            ].filter(Boolean);
 
             document.addEventListener('click', (e) => {
-                if (!wrapper.contains(e.target)) setOpen(false);
+                instances.forEach(({ wrapper, setOpen }) => {
+                    if (!wrapper.contains(e.target)) setOpen(false);
+                });
             });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') setOpen(false);
+                if (e.key === 'Escape') instances.forEach(({ setOpen }) => setOpen(false));
             });
         })();
         
