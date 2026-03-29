@@ -4,7 +4,7 @@
 ![Chains](https://img.shields.io/badge/Chains-Solana%20%26%20Base-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)
 
-## About
+## About https://j4-j-token.vercel.app 
 
 Justice for Joey ($J4J) is a meme coin created to raise awareness about government fraud and accountability. Inspired by Nick Shirley's exposé of the Minnesota daycare fraud scandal that allegedly involved over $9 billion in fraudulent claims.
 
