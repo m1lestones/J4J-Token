@@ -97,7 +97,7 @@ $J4J is a meme coin with no intrinsic value or expectation of financial return. 
 ## Links
 
 - **Website:** [Live Site]https://www.justiceforjoey.xyz/
-- **Twitter:** [@nickshirleyy](https://twitter.com/nickshirleyy) @justiceforJoey https://twitter.com/J4JToken
+- **Twitter:** [@nickshirleyy](https://twitter.com/nickshirleyy) [@justiceforJoey](https://twitter.com/J4JToken)
 - **Original Exposé:** [YouTube](https://www.youtube.com/watch?v=XXXXXXX)
 
 ## License
